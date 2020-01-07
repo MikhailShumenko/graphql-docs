@@ -1,0 +1,48 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.2.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'com.playground'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// inspired by exploring the following article: https://nordicapis.com/graphql-documentation-generators-explorers-and-tools/
+	// Insomnia can be used as local IDE
+
+	// https://medium.com/@iguissouma/rapid-development-of-simple-crud-graphql-apis-in-java-and-spring-boot-bafc4e8d387a
+	compile 'io.leangen.graphql:spqr:0.10.1'
+
+    // UI tool for Graph QL: https://pragmaticcoders.com/blog/how-to-use-graphql-in-spring-boot/
+	// available on localhost:8080/graphiql
+	compile 'com.graphql-java:graphiql-spring-boot-starter:5.0.2'
+
+	compile 'org.springframework.boot:spring-boot-starter-web'
+
+	compile 'org.springframework.boot:spring-boot-starter-data-jpa:2.2.1.RELEASE'
+	compile "org.liquibase:liquibase-core:3.6.3"
+	compile 'org.postgresql:postgresql:42.2.8'
+
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	testCompile('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}

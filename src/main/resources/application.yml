@@ -1,0 +1,27 @@
+spring.application.name: graph-ql-docs
+
+# enable spqr lib UI
+graphql.spqr.gui.enabled: true
+
+# Datasource
+spring:
+  datasource:
+    # DB driver class name
+    driver-class-name: org.postgresql.Driver
+    # DB url
+    url: jdbc:postgresql://${DB_PG_HOST_PORT:localhost:5432}/${DB_PG_NAME:}
+    # DB username
+    username: ${DB_PG_USER:postgres}
+    # DB password
+    password: ${DB_PG_PASSWORD:system}
+    # DB maximum pool size
+    hikari.maximum-pool-size: ${DB_MAXIMUM_POLL_SIZE:70}
+    # DB validation query (means to run a very basic query on the database)
+    hikari.connection-test-query: SELECT 1
+
+# To fix Issue #11
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation: true
+
+# Liquibase
+# read more at http://www.liquibase.org/documentation/
+spring.liquibase.change-log: classpath:/db/db_changelog.xml

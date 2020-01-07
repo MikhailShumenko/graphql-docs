@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export COMPOSE_HTTP_TIMEOUT=1200
+
+docker-compose  -f docker-compose.yml $*
