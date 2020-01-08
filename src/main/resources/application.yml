@@ -1,4 +1,5 @@
 spring.application.name: graph-ql-docs
+server.port: 8383
 
 # enable spqr lib UI
 graphql.spqr.gui.enabled: true

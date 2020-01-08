@@ -4,7 +4,7 @@
 
 create table if not exists public.blog_post
 (
-    id    serial       not null
+    id    uuid         not null
         primary key,
     title varchar(255) not null
 );

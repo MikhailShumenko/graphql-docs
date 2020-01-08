@@ -2,4 +2,7 @@
 
 export COMPOSE_HTTP_TIMEOUT=1200
 
+# Build gradle artifacts
+./gradlew clean build
+
 docker-compose  -f docker-compose.yml $*

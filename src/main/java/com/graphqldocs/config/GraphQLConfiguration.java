@@ -1,6 +1,6 @@
 package com.graphqldocs.config;
 
-import com.graphqldocs.service.BlogPostService;
+import com.graphqldocs.graphql.GraphQLService;
 import graphql.GraphQL;
 import graphql.analysis.MaxQueryComplexityInstrumentation;
 import graphql.analysis.MaxQueryDepthInstrumentation;
@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 public class GraphQLConfiguration {
@@ -31,12 +32,16 @@ public class GraphQLConfiguration {
     }
 
     @Bean
-    public GraphQLSchema generateSchema(BlogPostService blogPostService) {
-        return new GraphQLSchemaGenerator()
+    public GraphQLSchema generateSchema(List<GraphQLService> services) {
+        GraphQLSchemaGenerator builder = new GraphQLSchemaGenerator()
                 .withResolverBuilders(
                         new AnnotatedResolverBuilder(),
-                        new PublicResolverBuilder("com.graphqldocs"))
-                .withOperationsFromSingleton(blogPostService)
+                        new PublicResolverBuilder("com.graphqldocs")
+                );
+
+        services.forEach(builder::withOperationsFromSingleton);
+
+        return builder
                 .withValueMapperFactory(new JacksonValueMapperFactory())
                 .generate();
     }
