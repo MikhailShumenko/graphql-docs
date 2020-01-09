@@ -11,6 +11,16 @@
 - Wait few seconds and open `localhost:8383/graphiql` in a browser 
     (NOTE: graphiql uses server.port)
 
+**Add to existing project**
+
+Add the following dependency to your gradle script
+
+```gradle
+    // UI tool for Graph QL: https://pragmaticcoders.com/blog/how-to-use-graphql-in-spring-boot/
+	// available on localhost:<server.port>/graphiql
+	compile 'com.graphql-java:graphiql-spring-boot-starter:5.0.2'
+```
+
 **GraphiQL lib properties:**
 
 ```yaml
