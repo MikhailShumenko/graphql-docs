@@ -8,17 +8,22 @@ import graphql.execution.batched.BatchedExecutionStrategy;
 import graphql.execution.instrumentation.ChainedInstrumentation;
 import graphql.schema.GraphQLSchema;
 import io.leangen.graphql.GraphQLSchemaGenerator;
+import io.leangen.graphql.execution.ResolverInterceptor;
 import io.leangen.graphql.metadata.strategy.query.AnnotatedResolverBuilder;
 import io.leangen.graphql.metadata.strategy.query.PublicResolverBuilder;
 import io.leangen.graphql.metadata.strategy.value.jackson.JacksonValueMapperFactory;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
 import java.util.List;
 
+@RequiredArgsConstructor
 @Configuration
 public class GraphQLConfiguration {
+
+    private final ResolverInterceptor[] resolverInterceptors;
 
     @Bean
     public GraphQL graphQL(GraphQLSchema schema) {
@@ -34,9 +39,10 @@ public class GraphQLConfiguration {
     @Bean
     public GraphQLSchema generateSchema(List<GraphQLService> services) {
         GraphQLSchemaGenerator builder = new GraphQLSchemaGenerator()
+                .withResolverInterceptors(resolverInterceptors)
                 .withResolverBuilders(
-                        new AnnotatedResolverBuilder(),
-                        new PublicResolverBuilder("com.graphqldocs")
+                        new PublicResolverBuilder("com.graphqldocs"),
+                        new AnnotatedResolverBuilder()
                 );
 
         services.forEach(builder::withOperationsFromSingleton);
