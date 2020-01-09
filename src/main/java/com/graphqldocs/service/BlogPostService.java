@@ -11,7 +11,7 @@ import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLNonNull;
 import io.leangen.graphql.annotations.GraphQLQuery;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -20,11 +20,9 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-
-
 @Slf4j
+@RequiredArgsConstructor
 @Service
-@AllArgsConstructor
 public class BlogPostService implements GraphQLService {
 
     private final BlogPostRepository blogPostRepository;

@@ -1,5 +1,6 @@
 package com.graphqldocs.controller;
 
+import com.graphqldocs.graphql.ExecutionInputCreator;
 import graphql.ExecutionInput;
 import graphql.ExecutionResult;
 import graphql.GraphQL;
@@ -17,6 +18,7 @@ import java.util.Map;
 public class GraphQLController {
 
     private final GraphQL graphQL;
+    private final ExecutionInputCreator inputCreator;
 
     @PostMapping(
             value = "/graphql",
@@ -25,9 +27,7 @@ public class GraphQLController {
     )
     @ResponseBody
     public ExecutionResult execute(@RequestBody Map<String, Object> request) {
-        return graphQL.execute(ExecutionInput.newExecutionInput()
-                .query((String) request.get("query"))
-                .operationName((String) request.get("operationName"))
-                .build());
+        ExecutionInput executionInput = inputCreator.create(request);
+        return graphQL.execute(executionInput);
     }
 }
