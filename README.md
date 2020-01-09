@@ -1,7 +1,7 @@
 **Used Resources:**
 
-https://github.com/graphql/graphiql
-https://pragmaticcoders.com/blog/how-to-use-graphql-in-spring-boot/
+- https://github.com/graphql/graphiql
+- https://pragmaticcoders.com/blog/how-to-use-graphql-in-spring-boot/
 
 
 **To start service do the following steps:**
@@ -27,7 +27,9 @@ graphiql:
 **Secured Calls**
 
 If you need to send secured requests, feel free to use ModHeader to customize Http headers.
+
 Read more: https://github.com/graphql/graphiql/issues/59#issuecomment-254736162
+
 ModHeader: https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj
 
 ![image](https://user-images.githubusercontent.com/4786289/72071634-ea262980-32f4-11ea-8102-94ded2d7ab67.png)
