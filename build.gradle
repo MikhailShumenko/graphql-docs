@@ -26,7 +26,7 @@ dependencies {
 	compile 'io.leangen.graphql:spqr:0.10.1'
 
     // UI tool for Graph QL: https://pragmaticcoders.com/blog/how-to-use-graphql-in-spring-boot/
-	// available on localhost:8080/graphiql
+	// available on localhost:<server.port>/graphiql
 	compile 'com.graphql-java:graphiql-spring-boot-starter:5.0.2'
 
 	compile 'org.springframework.boot:spring-boot-starter-web'

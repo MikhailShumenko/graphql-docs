@@ -1,8 +1,9 @@
 spring.application.name: graph-ql-docs
 server.port: 8383
 
-# enable spqr lib UI
-graphql.spqr.gui.enabled: true
+# GraphiQL lib properties
+graphiql:
+  enabled: true
 
 # Datasource
 spring:
