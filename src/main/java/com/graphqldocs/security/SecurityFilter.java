@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
-
 
 /**
  * Imitates the main WKDA Security filter
@@ -36,11 +34,6 @@ public class SecurityFilter extends OncePerRequestFilter {
 
         authContext.setAuthorized(AUTH_VALUE.equals(request.getHeader(AUTH_HEADER_NAME)));
 
-        try {
-            filterChain.doFilter(request, response);
-        } catch (NotAuthorizedException ex) {
-            log.info("Couldn't authenticate {} from {}", request.getRequestURI(), request.getRemoteAddr());
-            response.sendError(HTTP_UNAUTHORIZED);
-        }
+        filterChain.doFilter(request, response);
     }
 }
