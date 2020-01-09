@@ -2,7 +2,7 @@
 
 - https://github.com/graphql/graphiql
 - https://pragmaticcoders.com/blog/how-to-use-graphql-in-spring-boot/
-
+- https://mvnrepository.com/artifact/com.graphql-java/graphiql-spring-boot-starter/5.0.2
 
 **To start service do the following steps:**
 
