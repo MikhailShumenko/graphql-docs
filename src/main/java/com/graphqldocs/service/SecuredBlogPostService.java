@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -45,7 +46,7 @@ public class SecuredBlogPostService implements GraphQLService {
             @GraphQLArgument(name = "id", description = "Blog post id in the UUID format.") @GraphQLNonNull UUID id
     ) {
         log.info("Secured request to get blog post: " + id);
-        return blogPostRepository.findById(id)
+        return Optional.ofNullable(blogPostRepository.findOne(id))
                 .map(converter::toDto)
                 .orElseThrow(() -> new IllegalArgumentException("Post not found: " + id));
     }

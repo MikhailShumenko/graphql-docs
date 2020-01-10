@@ -5,6 +5,8 @@ server.port: 8383
 graphiql:
   enabled: true
 
+liquibase.change-log: classpath:/db/db_changelog.xml
+
 # Datasource
 spring:
   datasource:
